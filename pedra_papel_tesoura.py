@@ -23,9 +23,11 @@ def game():
       
   choices = get_choices()
   result = check_win(choices ["player"], choices ["computer"])
-
+  print(choices)
   print (result)
+  
 
-
+if (__name__ == "__main__"):
+    game()
 
   
