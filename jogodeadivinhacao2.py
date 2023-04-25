@@ -5,7 +5,7 @@ def jogar():
     print ("Bem vindo ao jogo de advinhação !")
     print("*" * 50)
 
-    numero_secreto = random.randint (1,101)
+    numero_secreto = random.randint (1,100)
     pontos = 1000
     
 
@@ -80,3 +80,6 @@ def jogar():
     print (f"Sua pontuação foi:\n{pontos} pontos")
     print ("O numero secreto era >>>", numero_secreto, "!!!")
     print("Tchau")
+
+if (__name__ == "__main__"):
+    jogar()
