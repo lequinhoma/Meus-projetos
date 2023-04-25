@@ -31,4 +31,4 @@ elif jogo == "C" or jogo== "c":
     exit()
     
     
-else: "Você não inseriu uma entrada válida"
+else: print("Você não inseriu uma entrada válida")
