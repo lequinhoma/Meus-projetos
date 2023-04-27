@@ -1,82 +1,77 @@
 import random
 def jogar():
     
-    print("*" * 50)
-    print ("Bem vindo ao jogo de advinhação !")
-    print("*" * 50)
+    titulo()
 
     numero_secreto = random.randint (1,100)
     pontos = 1000
     
-
-    print ("Escolha sua dificuldade0")
-    print ("""
-        Fácil? Digite 1
-        Médio? Digite 2
-        Difícil? Digite 3""")
-    
-    nivel = int(input("Digite a dificuldade:\n"))
+    dificuldade = escolher_dificuldade()
 
 
+    for rodada in range (1, dificuldade + 1):
 
-    if nivel == 1:
-        total_de_tentativas = 20
-    elif nivel == 2:
-        total_de_tentativas = 10
-    else:
-        total_de_tentativas = 5
-
-
-    for rodada in range (1, total_de_tentativas + 1):
-
-        print (f"Tentativa {rodada} de {total_de_tentativas}")
+        print (f"Tentativa {rodada} de {dificuldade}")
 
         numero_usuario = input("Digite o seu número de 1 a 100: \n")
 
         chute = int(numero_usuario)
 
         print("Você digitou:", numero_usuario)
-
-        acertou = (chute == numero_secreto)
-        maior = (chute > numero_secreto)
-        menor = (chute < numero_secreto)
-        maior_perto = (numero_secreto < chute <= numero_secreto + 10)
-        menor_perto = (numero_secreto - 10 <= chute < numero_secreto)
-        muito_perto = (numero_secreto < chute <= numero_secreto + 2 ) or (numero_secreto - 2 <= chute < numero_secreto)
-
-        # simplificação das variáveis
-
-        if (chute < 1 or chute > 100):
-            print ("você deve digitar um numero entre 1 e 100")
-            continue
-
-        if acertou:
-            print(f"Você acertou!!!")
-            break
-        elif muito_perto:
-            print ("MEU DEUS, ESTÁ PELANDO. Continue tentando")
-
-        elif menor_perto:
-            print ("Você está muito perto, chute para mais!")
-
-        elif maior_perto:
-            print ("Você está muito perto! Chute para menos")
-
-        elif maior:
-            print('Chute para menos')
-
-        elif menor:
-            print('chute para mais')
-            
+        
+        parametros(chute,numero_secreto)
+ 
         pontos_perdidos = abs (numero_secreto - chute)
         pontos = pontos - pontos_perdidos
+    
+    
+    print (pontos)
+    
+    tchau(pontos,numero_secreto)
+
+
+def titulo ():
+    print("*" * 50)
+    print ("Bem vindo ao jogo de advinhação !")
+    print("*" * 50)
+def escolher_dificuldade():
+        print ("Escolha sua dificuldade0")
+        print ("""
+            Fácil? Digite 1
+            Médio? Digite 2
+            Difícil? Digite 3""")
         
+        nivel = int(input("Digite a dificuldade:\n"))
 
+
+
+        if nivel == 1:
+            total_de_tentativas = 20
+        elif nivel == 2:
+            total_de_tentativas = 10
+        else:
+            total_de_tentativas = 5
+        return total_de_tentativas
+
+
+def parametros(chute,numero_secreto,dificuldade):
+
+    while chute < numero_secreto:
+        print ("Chute um numero maior")
+        break
     else:
-        print("Se fudeu")
-        print (pontos)
-
-
+        print ("você errou")
+    
+        print ("Chute um numero menor")
+    if chute == numero_secreto:
+            print ("VOCÊ ACERTOU, MUITO FODA")
+            
+            exit()
+    elif (dificuldade == 0) and chute != numero_secreto:
+        print ("Você perdeu, que pena")
+        exit()
+                           
+def tchau(pontos,numero_secreto):
     print (f"Sua pontuação foi:\n{pontos} pontos")
     print ("O numero secreto era >>>", numero_secreto, "!!!")
     print("Tchau")
